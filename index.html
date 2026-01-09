@@ -1,21 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>Inser</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <style>
-    body { font-family: 'Segoe UI', sans-serif; background: #e6ecf0; margin: 0; }
-    header { background: #1da1f2; color: white; padding: 1rem; text-align: center; font-size: 1.5rem; font-weight: bold; }
-    nav { display: flex; justify-content: space-around; background: #fff; border-bottom: 1px solid #ddd; }
-    nav button { flex: 1; padding: 1rem; border: none; background: #fff; cursor: pointer; font-size: 1rem; }
-    nav button.active { border-bottom: 3px solid #1da1f2; font-weight: bold; color: #1da1f2; }
-    .container { max-width: 600px; margin: auto; padding: 1rem; }
-    input, textarea { width: 100%; padding: 0.7rem; margin: 0.5rem 0; border: 1px solid #ccc; border-radius: 8px; }
-    button.action { background: #1da1f2; color: white; border: none; padding: 0.6rem 1.2rem; border-radius: 20px; cursor: pointer; font-weight: bold; }
-    .card { background: white; border: 1px solid #ddd; padding: 1rem; margin-top: 1rem; border-radius: 12px; }
-    .card strong { color: #1da1f2; }
-    .card img { max-width: 100%; margin-top: 0.5rem; border-radius: 12px; }
-    .hidden { display: none; }
+    :root {
+      --primary: #1da1f2;
+      --bg: #e6ecf0;
+      --card: #fff;
+      --text: #0f1419;
+      --muted: #536471;
+    }
+    body { font-family: 'Segoe UI', system-ui, sans-serif; background: var(--bg); margin: 0; color: var(--text); }
+    header { background: var(--primary); color: #fff; padding: 1rem; text-align: center; font-size: 1.6rem; font-weight: 700; position: sticky; top: 0; }
+    nav { display: flex; justify-content: center; gap: .5rem; background: #fff; border-bottom: 1px solid #ddd; position: sticky; top: 64px; padding: .25rem .5rem; }
+    nav button { padding: .6rem 1rem; border: none; background: #fff; cursor: pointer; font-weight: 600; border-radius: 999px; }
+    nav button.active { background: #e8f4fd; color: var(--primary); border: 1px solid #cde8fb; }
+    .container { max-width: 680px; margin: auto; padding: 1rem; }
+    input, textarea { width: 100%; padding: .7rem; margin: .3rem 0; border: 1px solid #cbd5e1; border-radius: 10px; font-size: 1rem; }
+    button.action { background: var(--primary); color: white; border: none; padding: .6rem 1.2rem; border-radius: 999px; cursor: pointer; font-weight: 700; }
+    button.ghost { background: #fff; color: var(--primary); border: 1px solid #cde8fb; padding: .6rem 1.2rem; border-radius: 999px; font-weight: 700; cursor: pointer; }
+    button.danger { background: #ef4444; color: #fff; border: none; padding: .6rem 1rem; border-radius: 999px; font-weight: 700; cursor: pointer; }
+    .card { background: var(--card); border: 1px solid #e5e7eb; padding: 1rem; border-radius: 14px; margin-top: 1rem; }
+    .card strong { color: var(--primary); cursor: pointer; }
+    .card img { max-width: 100%; border-radius: 12px; margin-top: .5rem; }
+    .profile-banner { background: var(--primary); height: 140px; border-radius: 12px; margin-bottom: -60px; }
+    .profile-info { text-align: center; margin-top: 60px; }
+    .avatar { width: 90px; height: 90px; border-radius: 50%; border: 3px solid #fff; background: #ddd; display: inline-grid; place-items: center; font-weight: 800; color: var(--primary); }
+    .counts { display: flex; gap: 1rem; justify-content: center; color: var(--muted); }
+    .counts strong { color: var(--text); }
+    .hidden { display: none !important; }
   </style>
 </head>
 <body>
@@ -24,185 +39,118 @@
   <nav>
     <button id="homeTab" class="active">🏠 Home</button>
     <button id="profileTab">👤 Profile</button>
+    <button id="exploreTab">🔎 Explore</button>
   </nav>
 
   <div class="container">
-    <!-- Account Creation -->
+    <!-- Sign Up -->
     <section id="signupSection">
-      <h2>Create Account</h2>
-      <form id="signupForm">
-        <input type="text" id="newUsername" placeholder="Choose a username" required>
-        <input type="password" id="newPassword" placeholder="Choose a password" required>
-        <button type="submit" class="action">Sign Up</button>
-      </form>
-      <p>Already have an account? <a href="#" id="showSignin">Sign In</a></p>
+      <div class="card">
+        <h2>Create account</h2>
+        <form id="signupForm">
+          <input type="text" id="newUsername" placeholder="Username" required />
+          <input type="password" id="newPassword" placeholder="Password" required />
+          <button type="submit" class="action">Sign up</button>
+        </form>
+        <p>Already have an account? <a href="#" id="showSignin">Sign in</a></p>
+      </div>
     </section>
 
     <!-- Sign In -->
     <section id="signinSection" class="hidden">
-      <h2>Sign In</h2>
-      <form id="signinForm">
-        <input type="text" id="username" placeholder="Username" required>
-        <input type="password" id="password" placeholder="Password" required>
-        <button type="submit" class="action">Sign In</button>
-      </form>
-      <p>Need an account? <a href="#" id="showSignup">Create one</a></p>
+      <div class="card">
+        <h2>Sign in</h2>
+        <form id="signinForm">
+          <input type="text" id="username" placeholder="Username" required />
+          <input type="password" id="password" placeholder="Password" required />
+          <button type="submit" class="action">Sign in</button>
+        </form>
+        <p>Need an account? <a href="#" id="showSignup">Create one</a></p>
+      </div>
     </section>
 
-    <!-- Home Section -->
+    <!-- Home -->
     <section id="homeSection" class="hidden">
-      <h2>What's happening?</h2>
-      <form id="tweetForm">
-        <textarea id="tweetInput" rows="3" placeholder="Write a post..."></textarea>
-        <input type="file" id="imageInput" accept="image/*">
-        <button type="submit" class="action">Post</button>
-      </form>
-      <h2>Timeline</h2>
-      <div id="timeline"></div>
+      <div class="card">
+        <h2>What's happening?</h2>
+        <form id="postForm">
+          <textarea id="postInput" rows="3" placeholder="Write a post..."></textarea>
+          <input type="file" id="imageInput" accept="image/*" />
+          <button type="submit" class="action">Post</button>
+        </form>
+      </div>
+      <div class="card">
+        <h2>Timeline</h2>
+        <div id="timeline"></div>
+      </div>
     </section>
 
-    <!-- Profile Section -->
+    <!-- Profile -->
     <section id="profileSection" class="hidden">
-      <div id="profileInfo"></div>
-      <h3>Your Posts</h3>
-      <div id="myTweets"></div>
+      <div class="profile-banner"></div>
+      <div class="card">
+        <div class="profile-info">
+          <div class="avatar" id="profileAvatar">I</div>
+          <h2 id="profileHandle">@you</h2>
+          <p id="profileBio">Welcome to your Inser profile</p>
+          <div class="counts">
+            <span><strong id="profileFollowers">0</strong> Followers</span>
+            <span><strong id="profileFollowing">0</strong> Following</span>
+          </div>
+          <div>
+            <button id="followBtn" class="action hidden">Follow</button>
+            <button id="unfollowBtn" class="ghost hidden">Unfollow</button>
+            <button id="logoutBtn" class="danger">Log out</button>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <h3 id="profilePostsTitle">Your posts</h3>
+        <div id="profilePosts"></div>
+      </div>
+    </section>
+
+    <!-- Explore -->
+    <section id="exploreSection" class="hidden">
+      <div class="card">
+        <h2>Explore users</h2>
+        <input type="text" id="searchUser" placeholder="Search username..." />
+        <button id="searchBtn" class="ghost">Search</button>
+        <div id="usersList"></div>
+      </div>
     </section>
   </div>
 
   <script>
+    // Data
+    let users = JSON.parse(localStorage.getItem("users")) || [];
+    let posts = JSON.parse(localStorage.getItem("posts")) || [];
+    let currentUser = localStorage.getItem("currentUser") || null;
+    let viewingUser = null;
+
+    // Elements
     const signupSection = document.getElementById("signupSection");
     const signinSection = document.getElementById("signinSection");
     const homeSection = document.getElementById("homeSection");
     const profileSection = document.getElementById("profileSection");
+    const exploreSection = document.getElementById("exploreSection");
 
     const signupForm = document.getElementById("signupForm");
     const signinForm = document.getElementById("signinForm");
     const showSignin = document.getElementById("showSignin");
     const showSignup = document.getElementById("showSignup");
 
-    const tweetForm = document.getElementById("tweetForm");
-    const tweetInput = document.getElementById("tweetInput");
-    const imageInput = document.getElementById("imageInput");
-    const timeline = document.getElementById("timeline");
-    const myTweets = document.getElementById("myTweets");
-    const profileInfo = document.getElementById("profileInfo");
-
     const homeTab = document.getElementById("homeTab");
     const profileTab = document.getElementById("profileTab");
+    const exploreTab = document.getElementById("exploreTab");
 
-    let currentUser = null;
-    let tweets = JSON.parse(localStorage.getItem("tweets")) || [];
-    let users = JSON.parse(localStorage.getItem("users")) || [];
+    const postForm = document.getElementById("postForm");
+    const postInput = document.getElementById("postInput");
+    const imageInput = document.getElementById("imageInput");
+    const timeline = document.getElementById("timeline");
 
-    // Render tweets
-    function renderTweets() {
-      timeline.innerHTML = "";
-      myTweets.innerHTML = "";
-      tweets.forEach(tweet => {
-        const card = document.createElement("div");
-        card.className = "card";
-        card.innerHTML = `<strong>@${tweet.user}</strong><p>${tweet.text}</p>`;
-        if (tweet.image) {
-          const img = document.createElement("img");
-          img.src = tweet.image;
-          card.appendChild(img);
-        }
-        timeline.appendChild(card);
-        if (tweet.user === currentUser) {
-          myTweets.appendChild(card.cloneNode(true));
-        }
-      });
-    }
-
-    // Sign up
-    signupForm.addEventListener("submit", e => {
-      e.preventDefault();
-      const newUsername = document.getElementById("newUsername").value.trim();
-      const newPassword = document.getElementById("newPassword").value.trim();
-
-      if (users.find(u => u.username === newUsername)) {
-        alert("Username already exists!");
-        return;
-      }
-      users.push({ username: newUsername, password: newPassword });
-      localStorage.setItem("users", JSON.stringify(users));
-      alert("Account created! Please sign in.");
-      signupSection.classList.add("hidden");
-      signinSection.classList.remove("hidden");
-    });
-
-    // Sign in
-    signinForm.addEventListener("submit", e => {
-      e.preventDefault();
-      const username = document.getElementById("username").value.trim();
-      const password = document.getElementById("password").value.trim();
-
-      const user = users.find(u => u.username === username && u.password === password);
-      if (!user) {
-        alert("Invalid credentials!");
-        return;
-      }
-      currentUser = username;
-      alert("Signed in as " + username);
-      signinSection.classList.add("hidden");
-      homeSection.classList.remove("hidden");
-      profileInfo.innerHTML = `<h2>@${currentUser}</h2><p>Welcome to your Inser profile!</p>`;
-      renderTweets();
-    });
-
-    // Switch between signup/signin
-    showSignin.addEventListener("click", e => {
-      e.preventDefault();
-      signupSection.classList.add("hidden");
-      signinSection.classList.remove("hidden");
-    });
-    showSignup.addEventListener("click", e => {
-      e.preventDefault();
-      signinSection.classList.add("hidden");
-      signupSection.classList.remove("hidden");
-    });
-
-    // Post
-    tweetForm.addEventListener("submit", e => {
-      e.preventDefault();
-      const text = tweetInput.value.trim();
-      const file = imageInput.files[0];
-      if (text && currentUser) {
-        if (file) {
-          const reader = new FileReader();
-          reader.onload = event => saveTweet(text, event.target.result);
-          reader.readAsDataURL(file);
-        } else {
-          saveTweet(text, null);
-        }
-      }
-    });
-
-    function saveTweet(text, imageData) {
-      const tweet = { user: currentUser, text, image: imageData };
-      tweets.unshift(tweet);
-      localStorage.setItem("tweets", JSON.stringify(tweets));
-      renderTweets();
-      tweetInput.value = "";
-      imageInput.value = "";
-    }
-
-    // Tab switching
-    homeTab.addEventListener("click", () => {
-      homeTab.classList.add("active");
-      profileTab.classList.remove("active");
-      homeSection.classList.remove("hidden");
-      profileSection.classList.add("hidden");
-    });
-    profileTab.addEventListener("click", () => {
-      profileTab.classList.add("active");
-      homeTab.classList.remove("active");
-      profileSection.classList.remove("hidden");
-      homeSection.classList.add("hidden");
-    });
-
-    // Render tweets on load
-    renderTweets();
-  </script>
-</body>
-</html>
+    const profileHandle = document.getElementById("profileHandle");
+    const profileBio = document.getElementById("profileBio");
+    const profileFollowers = document.getElementById("profileFollowers");
+    const profileFollowing = document.getElementById("profileFollowing");
+    const profilePosts =
